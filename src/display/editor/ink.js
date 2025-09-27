@@ -96,6 +96,27 @@ class InkEditor extends DrawingEditor {
   }
 
   /** @inheritdoc */
+  updateParams(type, value) {
+    super.updateParams(type, value);
+    // Update toolbar displays after parameter changes
+    this.updateToolbarDisplays();
+  }
+
+  /**
+   * Update toolbar value displays based on current drawing options
+   */
+  updateToolbarDisplays() {
+    if (typeof window === "undefined" || !this._drawingOptions) {
+      return;
+    }
+
+    // Update displays based on current drawing options
+    this.updateColorDisplay(this._drawingOptions.stroke);
+    this.updateThicknessDisplay(this._drawingOptions["stroke-width"]);
+    this.updateOpacityDisplay(this._drawingOptions["stroke-opacity"]);
+  }
+
+  /** @inheritdoc */
   static get typesMap() {
     return shadow(
       this,
@@ -335,9 +356,16 @@ class InkEditor extends DrawingEditor {
    * Initialize the current value displays
    */
   initializeValueDisplays() {
-    this.updateColorDisplay(this._drawingOptions.stroke);
-    this.updateThicknessDisplay(this._drawingOptions["stroke-width"]);
-    this.updateOpacityDisplay(this._drawingOptions["stroke-opacity"]);
+    if (this._drawingOptions) {
+      this.updateColorDisplay(this._drawingOptions.stroke);
+      this.updateThicknessDisplay(this._drawingOptions["stroke-width"]);
+      this.updateOpacityDisplay(this._drawingOptions["stroke-opacity"]);
+    } else {
+      // Fallback to defaults if drawing options not yet initialized
+      this.updateColorDisplay(AnnotationEditor._defaultLineColor);
+      this.updateThicknessDisplay(1);
+      this.updateOpacityDisplay(1);
+    }
   }
 
   /**
