@@ -1699,3 +1699,10 @@ dialog :link {
     display: none;
   }
 }
+
+@media all and (max-width: 400px) {
+  #editorModeButtons {
+    max-width: 100px;
+    overflow: auto;
+  }
+}
