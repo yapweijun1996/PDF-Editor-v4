@@ -1701,8 +1701,11 @@ dialog :link {
 }
 
 @media all and (max-width: 400px) {
-  #editorModeButtons {
-    max-width: 100px;
+  #toolbarViewerMiddle {
+    max-width: 0px;
     overflow: auto;
+  }
+  #pageNumber{
+    max-width:20px;
   }
 }
