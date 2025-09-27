@@ -308,12 +308,18 @@ See https://github.com/adobe-type-tools/cmap-resources
                     <div class="editorParamsToolbar hidden doorHangerRight" id="editorFreeTextParamsToolbar">
                       <div class="editorParamsToolbarContainer">
                         <div class="editorParamsSetter">
-                          <label for="editorFreeTextColor" class="editorParamsLabel" data-l10n-id="pdfjs-editor-free-text-color-input"></label>
+                          <label for="editorFreeTextColor" class="editorParamsLabel" data-l10n-id="pdfjs-editor-free-text-color-input">
+                            Color:
+                          </label>
                           <input type="color" id="editorFreeTextColor" class="editorParamsColor" tabindex="0">
+                          <span class="currentValue" id="currentColorValue">#000000</span>
                         </div>
                         <div class="editorParamsSetter">
-                          <label for="editorFreeTextFontSize" class="editorParamsLabel" data-l10n-id="pdfjs-editor-free-text-size-input"></label>
+                          <label for="editorFreeTextFontSize" class="editorParamsLabel" data-l10n-id="pdfjs-editor-free-text-size-input">
+                            Font Size:
+                          </label>
                           <input type="range" id="editorFreeTextFontSize" class="editorParamsSlider" value="10" min="5" max="100" step="1" tabindex="0">
+                          <span class="currentValue" id="currentFontSize">10px</span>
                         </div>
                       </div>
                     </div>
