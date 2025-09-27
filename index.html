@@ -58,9 +58,9 @@ See https://github.com/adobe-type-tools/cmap-resources
           "pdfjs-lib": "../src/pdf.js",
           "pdfjs-web/": "./",
 
-          "fluent-bundle": "https://unpkg.com/@fluent/bundle@0.18.0/esm/index.js",
-          "fluent-dom": "https://unpkg.com/@fluent/dom@0.9.0/esm/index.js",
-          "cached-iterable": "../node_modules/cached-iterable/src/index.mjs",
+          "fluent-bundle": "https://unpkg.com/@fluent/bundle@latest/esm/index.js",
+          "fluent-dom": "https://unpkg.com/@fluent/dom@latest/esm/index.js",
+          "cached-iterable": "data:text/javascript,export default class CachedIterable { constructor(iterable) { this.iterable = iterable; this.cache = []; this.iter = iterable[Symbol.iterator](); } [Symbol.iterator]() { return this; } next() { if (this.cache.length > 0) { return this.cache.shift(); } const result = this.iter.next(); if (!result.done) { this.cache.push(result); } return result; } touchNext() { if (this.cache.length === 0) { const result = this.iter.next(); if (!result.done) { this.cache.push(result); } } } static from(iterable) { return new CachedIterable(iterable); } } export class CachedAsyncIterable { constructor(iterable) { this.iterable = iterable; this.cache = []; this.iter = iterable[Symbol.asyncIterator](); } [Symbol.asyncIterator]() { return this; } async next() { if (this.cache.length > 0) { return this.cache.shift(); } const result = await this.iter.next(); if (!result.done) { this.cache.push(result); } return result; } async touchNext() { if (this.cache.length === 0) { const result = await this.iter.next(); if (!result.done) { this.cache.push(result); } } } static from(iterable) { return new CachedAsyncIterable(iterable); } }",
 
           "display-cmap_reader_factory": "../src/display/cmap_reader_factory.js",
           "display-standard_fontdata_factory": "../src/display/standard_fontdata_factory.js",
