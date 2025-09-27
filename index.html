@@ -331,16 +331,25 @@ See https://github.com/adobe-type-tools/cmap-resources
                     <div class="editorParamsToolbar hidden doorHangerRight" id="editorInkParamsToolbar">
                       <div class="editorParamsToolbarContainer">
                         <div class="editorParamsSetter">
-                          <label for="editorInkColor" class="editorParamsLabel" data-l10n-id="pdfjs-editor-ink-color-input"></label>
+                          <label for="editorInkColor" class="editorParamsLabel" data-l10n-id="pdfjs-editor-ink-color-input">
+                            Color:
+                          </label>
                           <input type="color" id="editorInkColor" class="editorParamsColor" tabindex="0">
+                          <span class="currentValue" id="currentInkColorValue">#000000</span>
                         </div>
                         <div class="editorParamsSetter">
-                          <label for="editorInkThickness" class="editorParamsLabel" data-l10n-id="pdfjs-editor-ink-thickness-input"></label>
+                          <label for="editorInkThickness" class="editorParamsLabel" data-l10n-id="pdfjs-editor-ink-thickness-input">
+                            Thickness:
+                          </label>
                           <input type="range" id="editorInkThickness" class="editorParamsSlider" value="1" min="1" max="20" step="1" tabindex="0">
+                          <span class="currentValue" id="currentInkThicknessValue">1px</span>
                         </div>
                         <div class="editorParamsSetter">
-                          <label for="editorInkOpacity" class="editorParamsLabel" data-l10n-id="pdfjs-editor-ink-opacity-input"></label>
+                          <label for="editorInkOpacity" class="editorParamsLabel" data-l10n-id="pdfjs-editor-ink-opacity-input">
+                            Opacity:
+                          </label>
                           <input type="range" id="editorInkOpacity" class="editorParamsSlider" value="1" min="0.05" max="1" step="0.05" tabindex="0">
+                          <span class="currentValue" id="currentInkOpacityValue">100%</span>
                         </div>
                       </div>
                     </div>

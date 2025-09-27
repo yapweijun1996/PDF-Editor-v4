@@ -70,6 +70,9 @@ class InkEditor extends DrawingEditor {
     super({ ...params, name: "inkEditor" });
     this._willKeepAspectRatio = true;
     this.defaultL10nId = "pdfjs-editor-ink-editor";
+
+    // Setup toolbar value displays when editor is created
+    this.setupToolbarValueDisplays();
   }
 
   /** @inheritdoc */
@@ -311,6 +314,90 @@ class InkEditor extends DrawingEditor {
     annotation.updateEdited(params);
 
     return null;
+  }
+
+  /**
+   * Initialize toolbar value displays and event listeners
+   */
+  setupToolbarValueDisplays() {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    // Use setTimeout to ensure DOM elements are available
+    setTimeout(() => {
+      this.initializeValueDisplays();
+      this.setupEventListeners();
+    }, 0);
+  }
+
+  /**
+   * Initialize the current value displays
+   */
+  initializeValueDisplays() {
+    this.updateColorDisplay(this._drawingOptions.stroke);
+    this.updateThicknessDisplay(this._drawingOptions["stroke-width"]);
+    this.updateOpacityDisplay(this._drawingOptions["stroke-opacity"]);
+  }
+
+  /**
+   * Setup event listeners for toolbar controls
+   */
+  setupEventListeners() {
+    const colorInput = document.getElementById('editorInkColor');
+    const thicknessInput = document.getElementById('editorInkThickness');
+    const opacityInput = document.getElementById('editorInkOpacity');
+
+    if (colorInput) {
+      colorInput.addEventListener('input', (e) => {
+        this.updateColorDisplay(e.target.value);
+      });
+    }
+
+    if (thicknessInput) {
+      thicknessInput.addEventListener('input', (e) => {
+        this.updateThicknessDisplay(parseInt(e.target.value));
+      });
+    }
+
+    if (opacityInput) {
+      opacityInput.addEventListener('input', (e) => {
+        this.updateOpacityDisplay(parseFloat(e.target.value));
+      });
+    }
+  }
+
+  /**
+   * Update color value display
+   * @param {string} color
+   */
+  updateColorDisplay(color) {
+    const display = document.getElementById('currentInkColorValue');
+    if (display) {
+      display.textContent = color.toUpperCase();
+    }
+  }
+
+  /**
+   * Update thickness value display
+   * @param {number} thickness
+   */
+  updateThicknessDisplay(thickness) {
+    const display = document.getElementById('currentInkThicknessValue');
+    if (display) {
+      display.textContent = thickness + 'px';
+    }
+  }
+
+  /**
+   * Update opacity value display
+   * @param {number} opacity
+   */
+  updateOpacityDisplay(opacity) {
+    const display = document.getElementById('currentInkOpacityValue');
+    if (display) {
+      display.textContent = Math.round(opacity * 100) + '%';
+    }
   }
 }
 
