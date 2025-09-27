@@ -1063,6 +1063,11 @@ dialog :link {
       display: inline-block;
       width: max-content;
       height: auto;
+      font: menu;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: normal;
+      color: inherit;
     }
   }
 }

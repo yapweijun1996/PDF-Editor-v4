@@ -217,6 +217,15 @@
       border: 2px solid var(--comment-text-input-border);
       background-color: var(--comment-text-input-bg);
       color: var(--comment-text-input-fg);
+      font: menu;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    #commentManagerTextInput::placeholder {
+      color: var(--comment-text-input-fg);
+      opacity: 0.6;
+      font-style: italic;
     }
 
     #commentManagerTextView {
@@ -232,7 +241,26 @@
     }
 
     .dialogButtonsGroup {
+      display: flex;
+      justify-content: flex-end;
       gap: 8px;
+
+      button {
+        font: menu;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: normal;
+        min-width: 60px;
+        padding: 8px 16px;
+
+        > span {
+          display: inline-block;
+          width: max-content;
+          height: auto;
+          overflow: visible;
+          color: inherit;
+        }
+      }
 
       #commentManagerSaveButton:disabled {
         background-color: color-mix(
