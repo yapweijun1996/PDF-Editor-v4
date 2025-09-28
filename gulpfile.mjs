@@ -1124,7 +1124,7 @@ function buildGeneric(defines, dir) {
     createStandardFontBundle().pipe(gulp.dest(dir + "web/standard_fonts")),
     createWasmBundle().pipe(gulp.dest(dir + "web/wasm")),
 
-    preprocessHTML("web/viewer.html", defines).pipe(gulp.dest(dir + "web")),
+    preprocessHTML("web/index.html", defines).pipe(gulp.dest(dir + "web")),
     preprocessCSS("web/viewer.css", defines)
       .pipe(
         postcss([
@@ -1457,7 +1457,7 @@ gulp.task(
         ),
         createWasmBundle().pipe(gulp.dest(MOZCENTRAL_CONTENT_DIR + "web/wasm")),
 
-        preprocessHTML("web/viewer.html", defines).pipe(
+        preprocessHTML("web/index.html", defines).pipe(
           gulp.dest(MOZCENTRAL_CONTENT_DIR + "web")
         ),
         preprocessHTML("web/viewer-geckoview.html", gvDefines).pipe(
@@ -1565,7 +1565,7 @@ gulp.task(
           gulp.dest(CHROME_BUILD_CONTENT_DIR + "web/wasm")
         ),
 
-        preprocessHTML("web/viewer.html", defines).pipe(
+        preprocessHTML("web/index.html", defines).pipe(
           gulp.dest(CHROME_BUILD_CONTENT_DIR + "web")
         ),
         preprocessCSS("web/viewer.css", defines)
