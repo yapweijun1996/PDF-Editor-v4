@@ -22,7 +22,7 @@
 
 /**
  * pdfjsVersion = 5.4.0
- * pdfjsBuild = 3afb15bc
+ * pdfjsBuild = 5322faf4
  */
 /******/ // The require scope
 /******/ var __webpack_require__ = {};
@@ -729,7 +729,7 @@ const defaultOptions = {
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   enableAltText: {
-    value: false,
+    value: true,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   enableAltTextModelDownload: {
@@ -777,7 +777,7 @@ const defaultOptions = {
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   enableSignatureEditor: {
-    value: true,
+    value: false,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE
   },
   enableUpdatedAddImage: {
@@ -1510,7 +1510,7 @@ class BasePreferences {
     defaultZoomDelay: 400,
     defaultZoomValue: "",
     disablePageLabels: false,
-    enableAltText: false,
+    enableAltText: true,
     enableAltTextModelDownload: true,
     enableAutoLinking: true,
     enableComment: true,
@@ -1521,7 +1521,7 @@ class BasePreferences {
     enablePermissions: false,
     enablePrintAutoRotate: true,
     enableScripting: true,
-    enableSignatureEditor: true,
+    enableSignatureEditor: false,
     enableUpdatedAddImage: false,
     externalLinkTarget: 0,
     highlightEditorColors: "yellow=#FFFF98,green=#53FFBC,blue=#80EBFF,pink=#FFCBE6,red=#FF4F5F,yellow_HCM=#FFFFCC,green_HCM=#53FFBC,blue_HCM=#80EBFF,pink_HCM=#F6B8FF,red_HCM=#C50043",

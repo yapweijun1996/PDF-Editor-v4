@@ -667,6 +667,7 @@ const PDFViewerApplication = {
           AppOptions.get("nimbusDataStr") || "null"
         );
         this.toolbar = new Toolbar(appConfig.toolbar, eventBus, nimbusData);
+        document.getElementById("zoomButtons").hidden = true;
       } else {
         this.toolbar = new Toolbar(
           appConfig.toolbar,

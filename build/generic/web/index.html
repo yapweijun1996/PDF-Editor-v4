@@ -155,7 +155,7 @@ See https://github.com/adobe-type-tools/cmap-resources
                 </div>
               </div>
               <div id="toolbarViewerMiddle" class="toolbarHorizontalGroup">
-                <div class="toolbarHorizontalGroup">
+                <div class="toolbarHorizontalGroup" id="zoomButtons">
                   <button id="zoomOutButton" class="toolbarButton" type="button" tabindex="0" data-l10n-id="pdfjs-zoom-out-button">
                     <span data-l10n-id="pdfjs-zoom-out-button-label"></span>
                   </button>
@@ -184,11 +184,11 @@ See https://github.com/adobe-type-tools/cmap-resources
               </div>
               <div id="toolbarViewerRight" class="toolbarHorizontalGroup">
                 <div id="editorModeButtons" class="toolbarHorizontalGroup" role="radiogroup">
-                  <div id="editorComment" class="toolbarButtonWithContainer">
+                  <div id="editorComment" class="toolbarButtonWithContainer" style="display:none;">
                     <button id="editorCommentButton" class="toolbarButton" type="button" tabindex="0" role="radio" aria-expanded="false" aria-haspopup="true" aria-controls="editorCommentParamsToolbar" data-l10n-id="pdfjs-editor-comment-button">
                       <span data-l10n-id="pdfjs-editor-comment-button-label"></span>
                     </button>
-                    <div class="editorParamsToolbar sidebar hidden menu" id="editorCommentParamsToolbar">
+                    <div class="editorParamsToolbar sidebar menu" id="editorCommentParamsToolbar">
                       <div id="editorCommentsSidebar" class="menuContainer" role="landmark" aria-labelledby="editorCommentsSidebarHeader">
                         <div id="editorCommentsSidebarHeader" role="heading" aria-level="2">
                           <span class="commentCount">
