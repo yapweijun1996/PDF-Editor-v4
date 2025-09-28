@@ -1,303 +1,137 @@
-# PDF Editor v4
+# PDF.js [![CI](https://github.com/mozilla/pdf.js/actions/workflows/ci.yml/badge.svg?query=branch%3Amaster)](https://github.com/mozilla/pdf.js/actions/workflows/ci.yml?query=branch%3Amaster)
 
-A powerful, web-based PDF viewer and editor built with PDF.js, providing comprehensive document viewing and annotation capabilities with modern UI/UX.
+[PDF.js](https://mozilla.github.io/pdf.js/) is a Portable Document Format (PDF) viewer that is built with HTML5.
 
-## 🚀 Features
+PDF.js is community-driven and supported by Mozilla. Our goal is to
+create a general-purpose, web standards-based platform for parsing and
+rendering PDFs.
 
-### For Users
-- **📄 PDF Viewing**: High-quality PDF rendering with support for all PDF formats
-- **🔍 Advanced Navigation**: Page navigation, bookmarks, thumbnails, and outline support
-- **🔎 Search & Find**: Full-text search with highlighting and advanced options
-- **📝 Annotation Tools**:
-  - ✏️ **Text Highlighting**: Highlight important text with customizable colors
-  - 📝 **Free Text**: Add text annotations anywhere on the document
-  - 🖊️ **Ink Drawing**: Freehand drawing and annotation tools
-  - 🏷️ **Stamps**: Add predefined or custom stamps
-  - ✍️ **Signatures**: Digital signature support with multiple input methods
-  - 💬 **Comments**: Add and manage document comments
-- **🎨 Rich Formatting**: Customizable colors, fonts, and styling for annotations
-- **🔧 AI-Powered Features**: Automatic alt-text generation for images (when enabled)
-- **📱 Responsive Design**: Works seamlessly on desktop and mobile devices
-- **♿ Accessibility**: Screen reader support and keyboard navigation
-- **🌙 Theme Support**: Light and dark mode compatibility
+## Contributing
 
-### For Developers
-- **🛠️ Extensible Architecture**: Built with modular, extensible components
-- **⚙️ Configurable Options**: Extensive customization through app options
-- **🎯 Event-Driven**: Event bus system for easy integration
-- **🔌 Plugin Support**: Easy to extend with custom tools and features
-- **📊 Telemetry**: Built-in analytics and reporting capabilities
+PDF.js is an open source project and always looking for more contributors. To
+get involved, visit:
 
-## 📋 Requirements
++ [Issue Reporting Guide](https://github.com/mozilla/pdf.js/blob/master/.github/CONTRIBUTING.md)
++ [Code Contribution Guide](https://github.com/mozilla/pdf.js/wiki/Contributing)
++ [Frequently Asked Questions](https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions)
++ [Good Beginner Bugs](https://github.com/mozilla/pdf.js/issues?q=is%3Aissue%20state%3Aopen%20label%3Agood-beginner-bug)
++ [Projects](https://github.com/mozilla/pdf.js/projects)
 
-- Modern web browser with JavaScript enabled
-- No additional dependencies required - runs entirely in the browser
-- Local file access for offline usage (requires appropriate browser permissions)
+Feel free to stop by our [Matrix room](https://chat.mozilla.org/#/room/#pdfjs:mozilla.org) for questions or guidance.
 
-## 🚀 Quick Start
+## Getting Started
 
-### Option 1: Open Directly
-1. Open `index.html` in your web browser
-2. Click "Open File" or drag and drop a PDF file
-3. Start viewing and editing your document
+### Online demo
 
-### Option 2: Local Development Server
-```bash
-# Using Python (if available)
-python -m http.server 8000
+Please note that the "Modern browsers" version assumes native support for the
+latest JavaScript features; please also see [this wiki page](https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions#faq-support).
 
-# Using Node.js (if available)
-npx serve .
++ Modern browsers: https://mozilla.github.io/pdf.js/web/viewer.html
 
-# Using PHP (if available)
-php -S localhost:8000
-```
-Then open `http://localhost:8000` in your browser.
++ Older browsers: https://mozilla.github.io/pdf.js/legacy/web/viewer.html
 
-## 📖 User Guide
+### Browser Extensions
 
-### Basic Navigation
-- **Page Navigation**: Use toolbar buttons, keyboard arrows, or page input field
-- **Zoom Control**: Use zoom buttons, mouse wheel, or zoom dropdown
-- **View Modes**: Switch between single page, continuous, or book view
-- **Rotation**: Rotate pages clockwise or counterclockwise
+#### Firefox
 
-### Using Annotation Tools
-1. **Select a Tool**: Click on any annotation tool in the toolbar (highlight, text, ink, etc.)
-2. **Customize Settings**: Use the tool parameters panel to adjust colors, sizes, and other properties
-3. **Apply Annotations**: Click or drag on the document to add your annotations
-4. **Edit Annotations**: Click on existing annotations to modify or delete them
+PDF.js is built into version 19+ of Firefox.
 
-### Search Functionality
-1. Click the search button (🔍) in the toolbar
-2. Enter your search terms
-3. Use "Highlight all" to see all matches
-4. Navigate through results with Previous/Next buttons
+#### Chrome
 
-### Saving Your Work
-- **Download Original**: Save the original PDF file
-- **Download with Annotations**: Save your PDF with all annotations included
-- **Auto-save**: Annotations are automatically saved locally
++ The official extension for Chrome can be installed from the [Chrome Web Store](https://chrome.google.com/webstore/detail/pdf-viewer/oemmndcbldboiebfnladdacbdfmadadm).
+*This extension is maintained by [@Rob--W](https://github.com/Rob--W).*
++ Build Your Own - Get the code as explained below and issue `npx gulp chromium`. Then open
+Chrome, go to `Tools > Extension` and load the (unpackaged) extension from the
+directory `build/chromium`.
 
-## ⚙️ Developer Guide
+## Getting the Code
 
-### Project Structure
-```
-├── index.html              # Main HTML file
-├── viewer.js              # Main viewer application
-├── app.js                 # Core application logic
-├── viewer.css             # Main stylesheet
-├── app_options.js         # Configuration options
-├── pdf_viewer.js          # PDF rendering component
-├── annotation_editor_*.js # Annotation editing tools
-├── toolbar.js             # Toolbar component
-├── pdf_sidebar.js         # Sidebar component
-└── src/                   # PDF.js library source
-```
+To get a local copy of the current code, clone it using git:
 
-### Key Components
+    $ git clone https://github.com/mozilla/pdf.js.git
+    $ cd pdf.js
 
-#### PDFViewerApplication (app.js)
-Main application class that orchestrates all functionality:
-- Document loading and management
-- Event handling and coordination
-- Component initialization
-- User interaction management
+Next, install Node.js via the [official package](https://nodejs.org) or via
+[nvm](https://github.com/creationix/nvm). If everything worked out, install
+all dependencies for PDF.js:
 
-#### Annotation Editor System
-- **AnnotationEditorParams**: Manages annotation tool parameters
-- **SignatureManager**: Handles digital signature functionality
-- **CommentManager**: Manages document comments
-- **AltTextManager**: AI-powered image description generation
+    $ npm install
 
-### Configuration Options
+Finally, you need to start a local web server as some browsers do not allow opening
+PDF files using a `file://` URL. Run:
 
-Customize behavior through `app_options.js`:
+    $ npx gulp server
 
-```javascript
-// Example customizations
-AppOptions.set('annotationEditorMode', AnnotationEditorType.INK);
-AppOptions.set('enableSignatureEditor', true);
-AppOptions.set('enableComment', true);
-AppOptions.set('defaultZoomValue', 'page-fit');
-```
+and then you can open:
 
-### Available App Options
++ http://localhost:8888/web/viewer.html
 
-| Option | Description | Default |
-|--------|-------------|---------|
-| `annotationEditorMode` | Default annotation editor mode | `HIGHLIGHT` |
-| `enableSignatureEditor` | Enable digital signature tool | `false` |
-| `enableComment` | Enable comment system | `true` |
-| `defaultZoomValue` | Default zoom level | `'auto'` |
-| `textLayerMode` | Text layer rendering mode | `TextLayerMode.ENABLE` |
-| `annotationMode` | PDF annotation handling | `AnnotationMode.ENABLE` |
+Please keep in mind that this assumes the latest version of Mozilla Firefox; refer to [Building PDF.js](https://github.com/mozilla/pdf.js/blob/master/README.md#building-pdfjs) for non-development usage of the PDF.js library.
 
-### Event System
+It is also possible to view all test PDF files on the right side by opening:
 
-The application uses an event-driven architecture:
++ http://localhost:8888/test/pdfs/?frame
 
-```javascript
-// Listen for events
-eventBus.on('documentloaded', (evt) => {
-  console.log('PDF document loaded:', evt);
-});
+## Building PDF.js
 
-// Dispatch custom events
-eventBus.dispatch('customEvent', {
-  source: this,
-  data: customData
-});
-```
+In order to bundle all `src/` files into two production scripts and build the generic
+viewer, run:
 
-### Extending Functionality
+    $ npx gulp generic
 
-#### Adding Custom Tools
-1. Create a new tool class extending base functionality
-2. Register the tool in the main application
-3. Add UI elements to the toolbar
-4. Handle tool events in the event bus
+If you need to support older browsers, run:
 
-#### Custom Annotation Types
-```javascript
-// Example: Custom annotation type
-class CustomAnnotationEditor extends AnnotationEditor {
-  constructor(parameters) {
-    super(parameters);
-    this.type = 'custom';
-  }
-}
-```
+    $ npx gulp generic-legacy
 
-## 🔧 Advanced Configuration
+This will generate `pdf.js` and `pdf.worker.js` in the `build/generic/build/` directory (respectively `build/generic-legacy/build/`).
+Both scripts are needed but only `pdf.js` needs to be included since `pdf.worker.js` will
+be loaded by `pdf.js`. The PDF.js files are large and should be minified for production.
 
-### Build Configuration
-The application supports different build targets:
-- **GENERIC**: Standard web build
-- **CHROME**: Chrome extension build
-- **MOZCENTRAL**: Firefox extension build
+## Using PDF.js in a web application
 
-### Development Mode
-Enable development features by setting URL parameters:
-```
-index.html?pdfBugEnabled=true&disableRange=false
-```
+To use PDF.js in a web application you can choose to use a pre-built version of the library
+or to build it from source. We supply pre-built versions for usage with NPM under
+the `pdfjs-dist` name. For more information and examples please refer to the
+[wiki page](https://github.com/mozilla/pdf.js/wiki/Setup-pdf.js-in-a-website) on this subject.
 
-### Performance Tuning
-Optimize for specific use cases:
-```javascript
-AppOptions.set('maxCanvasPixels', 16777216); // 4096x4096
-AppOptions.set('capCanvasAreaFactor', 2.0);
-AppOptions.set('enableHWA', true); // Hardware acceleration
-```
+## Including via a CDN
 
-## 🌐 Browser Support
+PDF.js is hosted on several free CDNs:
+ - https://www.jsdelivr.com/package/npm/pdfjs-dist
+ - https://cdnjs.com/libraries/pdf.js
+ - https://unpkg.com/pdfjs-dist/
 
-- **Chrome/Chromium**: Full support (recommended)
-- **Firefox**: Full support
-- **Safari**: Full support
-- **Edge**: Full support
-- **Mobile browsers**: Limited support (viewing only)
+## Learning
 
-## 🤝 Contributing
+You can play with the PDF.js API directly from your browser using the live demos below:
 
-### Development Setup
-1. Clone the repository
-2. Install dependencies (if any)
-3. Start development server
-4. Make your changes
-5. Test across different browsers
-6. Submit pull request
++ [Interactive examples](https://mozilla.github.io/pdf.js/examples/index.html#interactive-examples)
 
-### Code Style
-- Use ESLint configuration provided
-- Follow existing code patterns
-- Add JSDoc comments for new functions
-- Test changes thoroughly
+More examples can be found in the [examples folder](https://github.com/mozilla/pdf.js/tree/master/examples/). Some of them are using the pdfjs-dist package, which can be built and installed in this repo directory via `npx gulp dist-install` command.
 
-### Testing
-- Test with various PDF file types
-- Verify annotation functionality
-- Check responsive design
-- Validate accessibility features
+For an introduction to the PDF.js code, check out the presentation by our
+contributor Julian Viereck:
 
-## 📄 License
++ https://www.youtube.com/watch?v=Iv15UY-4Fg8
 
-This project is licensed under the Apache License 2.0 - see the LICENSE file for details.
+More learning resources can be found at:
 
-## 🙏 Acknowledgments
++ https://github.com/mozilla/pdf.js/wiki/Additional-Learning-Resources
 
-- **PDF.js**: Core PDF rendering engine by Mozilla
-- **Mozilla Foundation**: Original PDF.js viewer implementation
-- **Contributors**: All community contributors
+The API documentation can be found at:
 
-## 🏢 Business Use Cases
++ https://mozilla.github.io/pdf.js/api/
 
-Yes, this PDF Editor is well-suited for various business applications:
+## Questions
 
-### Professional Document Review
-- **Contract Review**: Annotate contracts with highlights, comments, and signatures
-- **Document Approval Workflows**: Use stamps and signatures for approval processes
-- **Legal Document Analysis**: Advanced text search and highlighting capabilities
-- **Compliance Documentation**: Maintain audit trails with annotation metadata
+Check out our FAQs and get answers to common questions:
 
-### Enterprise Features
-- **Digital Signatures**: Legally binding signature capabilities with multiple input methods
-- **Annotation Management**: Organized comment system with threading and status tracking
-- **Batch Processing**: Handle multiple documents efficiently
-- **Security**: Client-side processing ensures document privacy
-- **Integration Ready**: Event-driven architecture supports enterprise system integration
++ https://github.com/mozilla/pdf.js/wiki/Frequently-Asked-Questions
 
-### Industry Applications
-- **Legal Services**: Contract review, case preparation, document markup
-- **Real Estate**: Document signing, contract annotations, property documentation
-- **Healthcare**: Medical record annotation, compliance documentation
-- **Education**: Academic paper review, student feedback, collaborative editing
-- **Finance**: Report analysis, audit documentation, compliance reviews
+Talk to us on Matrix:
 
-### Business Benefits
-- **Cost Effective**: No per-user licensing fees, runs in standard web browsers
-- **Cross-Platform**: Works on any device with a modern web browser
-- **No Installation**: Deploy instantly without IT infrastructure changes
-- **Data Security**: Documents processed client-side, no server storage required
-- **Compliance**: Maintains document integrity with annotation metadata
++ https://chat.mozilla.org/#/room/#pdfjs:mozilla.org
 
-### Enterprise Deployment Options
-- **Web Portal Integration**: Embed in existing business applications
-- **Custom Branding**: Modify CSS and configuration for corporate identity
-- **API Integration**: Event system supports integration with business workflows
-- **SSO Support**: Compatible with enterprise authentication systems
+File an issue:
 
-### Limitations for Business Use
-- **Internet Dependent**: Requires web browser (though works offline after loading)
-- **Local Storage**: Annotations stored in browser local storage by default
-- **No Server Component**: Client-side only (can be extended with backend)
-
-### Business Configuration Example
-```javascript
-// Enterprise configuration
-AppOptions.set('annotationEditorMode', AnnotationEditorType.INK);
-AppOptions.set('enableSignatureEditor', true);
-AppOptions.set('enableComment', true);
-// Custom enterprise toolbar
-AppOptions.set('toolbarDensity', 'compact');
-// Enhanced security settings
-AppOptions.set('disableRange', false);
-```
-
-## 🆘 Support
-
-### Common Issues
-- **File won't load**: Check file permissions and browser security settings
-- **Annotations not saving**: Ensure local storage is enabled
-- **Performance issues**: Try reducing canvas size limits in options
-
-### Getting Help
-1. Check existing documentation
-2. Review browser console for error messages
-3. Test with different PDF files
-4. Check browser compatibility
-
----
-
-**Made with ❤️ using PDF.js**
++ https://github.com/mozilla/pdf.js/issues/new/choose

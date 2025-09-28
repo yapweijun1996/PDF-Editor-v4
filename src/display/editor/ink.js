@@ -70,9 +70,6 @@ class InkEditor extends DrawingEditor {
     super({ ...params, name: "inkEditor" });
     this._willKeepAspectRatio = true;
     this.defaultL10nId = "pdfjs-editor-ink-editor";
-
-    // Setup toolbar value displays when editor is created
-    this.setupToolbarValueDisplays();
   }
 
   /** @inheritdoc */
@@ -93,27 +90,6 @@ class InkEditor extends DrawingEditor {
   /** @inheritdoc */
   static get supportMultipleDrawings() {
     return true;
-  }
-
-  /** @inheritdoc */
-  updateParams(type, value) {
-    super.updateParams(type, value);
-    // Update toolbar displays after parameter changes
-    this.updateToolbarDisplays();
-  }
-
-  /**
-   * Update toolbar value displays based on current drawing options
-   */
-  updateToolbarDisplays() {
-    if (typeof window === "undefined" || !this._drawingOptions) {
-      return;
-    }
-
-    // Update displays based on current drawing options
-    this.updateColorDisplay(this._drawingOptions.stroke);
-    this.updateThicknessDisplay(this._drawingOptions["stroke-width"]);
-    this.updateOpacityDisplay(this._drawingOptions["stroke-opacity"]);
   }
 
   /** @inheritdoc */
@@ -335,97 +311,6 @@ class InkEditor extends DrawingEditor {
     annotation.updateEdited(params);
 
     return null;
-  }
-
-  /**
-   * Initialize toolbar value displays and event listeners
-   */
-  setupToolbarValueDisplays() {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    // Use setTimeout to ensure DOM elements are available
-    setTimeout(() => {
-      this.initializeValueDisplays();
-      this.setupEventListeners();
-    }, 0);
-  }
-
-  /**
-   * Initialize the current value displays
-   */
-  initializeValueDisplays() {
-    if (this._drawingOptions) {
-      this.updateColorDisplay(this._drawingOptions.stroke);
-      this.updateThicknessDisplay(this._drawingOptions["stroke-width"]);
-      this.updateOpacityDisplay(this._drawingOptions["stroke-opacity"]);
-    } else {
-      // Fallback to defaults if drawing options not yet initialized
-      this.updateColorDisplay(AnnotationEditor._defaultLineColor);
-      this.updateThicknessDisplay(1);
-      this.updateOpacityDisplay(1);
-    }
-  }
-
-  /**
-   * Setup event listeners for toolbar controls
-   */
-  setupEventListeners() {
-    const colorInput = document.getElementById('editorInkColor');
-    const thicknessInput = document.getElementById('editorInkThickness');
-    const opacityInput = document.getElementById('editorInkOpacity');
-
-    if (colorInput) {
-      colorInput.addEventListener('input', (e) => {
-        this.updateColorDisplay(e.target.value);
-      });
-    }
-
-    if (thicknessInput) {
-      thicknessInput.addEventListener('input', (e) => {
-        this.updateThicknessDisplay(parseInt(e.target.value));
-      });
-    }
-
-    if (opacityInput) {
-      opacityInput.addEventListener('input', (e) => {
-        this.updateOpacityDisplay(parseFloat(e.target.value));
-      });
-    }
-  }
-
-  /**
-   * Update color value display
-   * @param {string} color
-   */
-  updateColorDisplay(color) {
-    const display = document.getElementById('currentInkColorValue');
-    if (display) {
-      display.textContent = color.toUpperCase();
-    }
-  }
-
-  /**
-   * Update thickness value display
-   * @param {number} thickness
-   */
-  updateThicknessDisplay(thickness) {
-    const display = document.getElementById('currentInkThicknessValue');
-    if (display) {
-      display.textContent = thickness + 'px';
-    }
-  }
-
-  /**
-   * Update opacity value display
-   * @param {number} opacity
-   */
-  updateOpacityDisplay(opacity) {
-    const display = document.getElementById('currentInkOpacityValue');
-    if (display) {
-      display.textContent = Math.round(opacity * 100) + '%';
-    }
   }
 }
 

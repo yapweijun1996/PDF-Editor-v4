@@ -137,9 +137,6 @@ class FreeTextEditor extends AnnotationEditor {
     if (!this.annotationElementId) {
       this._uiManager.a11yAlert("pdfjs-editor-freetext-added-alert");
     }
-
-    // Setup toolbar value displays when editor is created
-    this.setupToolbarValueDisplays();
   }
 
   /** @inheritdoc */
@@ -171,71 +168,6 @@ class FreeTextEditor extends AnnotationEditor {
       case AnnotationEditorParamsType.FREETEXT_COLOR:
         FreeTextEditor._defaultColor = value;
         break;
-    }
-  }
-
-  /**
-   * Initialize toolbar value displays and event listeners
-   */
-  setupToolbarValueDisplays() {
-    if (typeof window === "undefined") {
-      return;
-    }
-
-    // Use setTimeout to ensure DOM elements are available
-    setTimeout(() => {
-      this.initializeValueDisplays();
-      this.setupEventListeners();
-    }, 0);
-  }
-
-  /**
-   * Initialize the current value displays
-   */
-  initializeValueDisplays() {
-    this.updateColorDisplay(this.#color);
-    this.updateFontSizeDisplay(this.#fontSize);
-  }
-
-  /**
-   * Setup event listeners for toolbar controls
-   */
-  setupEventListeners() {
-    const colorInput = document.getElementById('editorFreeTextColor');
-    const fontSizeInput = document.getElementById('editorFreeTextFontSize');
-
-    if (colorInput) {
-      colorInput.addEventListener('input', (e) => {
-        this.updateColorDisplay(e.target.value);
-      });
-    }
-
-    if (fontSizeInput) {
-      fontSizeInput.addEventListener('input', (e) => {
-        this.updateFontSizeDisplay(parseInt(e.target.value));
-      });
-    }
-  }
-
-  /**
-   * Update color value display
-   * @param {string} color
-   */
-  updateColorDisplay(color) {
-    const display = document.getElementById('currentColorValue');
-    if (display) {
-      display.textContent = color.toUpperCase();
-    }
-  }
-
-  /**
-   * Update font size value display
-   * @param {number} size
-   */
-  updateFontSizeDisplay(size) {
-    const display = document.getElementById('currentFontSize');
-    if (display) {
-      display.textContent = size + 'px';
     }
   }
 
