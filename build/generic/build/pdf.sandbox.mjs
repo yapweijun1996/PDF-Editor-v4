@@ -22,7 +22,7 @@
 
 /**
  * pdfjsVersion = 5.4.0
- * pdfjsBuild = 9ec99218
+ * pdfjsBuild = c46874b6
  */
 /******/ // The require scope
 /******/ var __webpack_require__ = {};
