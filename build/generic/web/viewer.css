@@ -7304,3 +7304,15 @@ dialog :link{
 @media all and (max-width: 560px) {
   #zoomButtons { display: none !important; }
 }
+
+/*
+ * Mobile/touch: hide Zoom In/Out group
+ * - Touch heuristic: (hover: none) and (pointer: coarse)
+ * - Small screen fallback: max-width: 560px
+ */
+@media (hover: none) and (pointer: coarse) {
+  #zoomButtons { display: none !important; }
+}
+@media all and (max-width: 560px) {
+  #zoomButtons { display: none !important; }
+}
