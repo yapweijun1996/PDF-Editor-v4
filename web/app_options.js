@@ -205,7 +205,7 @@ const defaultOptions = {
   },
   enableAltText: {
     /** @type {boolean} */
-    value: false,
+    value: true,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE,
   },
   enableAltTextModelDownload: {
@@ -220,7 +220,7 @@ const defaultOptions = {
   },
   enableComment: {
     /** @type {boolean} */
-    value: typeof PDFJSDev === "undefined" || PDFJSDev.test("TESTING"),
+    value: true,
     kind: OptionKind.VIEWER + OptionKind.PREFERENCE,
   },
   enableDetailCanvas: {
